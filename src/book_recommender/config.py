@@ -36,10 +36,14 @@ class Settings(BaseSettings):
     # Image Storage
     COVERS_DIR: Path = PROJECT_ROOT / "artifacts" / "covers"
     
+    # Reproducibility
+    SEED = 42
+    
     # CLIP Model Configurations
     CLIP_MODEL_NAME: str = "openai/clip-vit-base-patch32"
     TEXT_BATCH_SIZE: int = 32
     IMAGE_BATCH_SIZE: int = 16
+    DEVICE: str = 'auto'
     
     class Config:
         env_file = '.env'
