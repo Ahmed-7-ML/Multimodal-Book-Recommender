@@ -53,6 +53,8 @@ multimodal-book-recommender/
 ├── tests/
 │   ├── test_preprocessing.py
 │   └── test_embeddings.py
+
+│   └── test_clip_model.py
 │
 ├── .env.example
 ├── .gitignore

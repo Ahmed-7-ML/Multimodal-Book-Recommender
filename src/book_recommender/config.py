@@ -3,7 +3,7 @@
 from pathlib import Path
 
 # We use pydantic-settings to allow environment variables to override defaults
-from pydantic_settings import BaseSettings
+from pydantic_settings import SettingsConfigDict, BaseSettings
 
 # Project Root
 # config.py -> multimodal_book_recommender -> src -> project root
@@ -37,16 +37,18 @@ class Settings(BaseSettings):
     COVERS_DIR: Path = PROJECT_ROOT / "artifacts" / "covers"
     
     # Reproducibility
-    SEED = 42
+    SEED: int = 42
     
     # CLIP Model Configurations
     CLIP_MODEL_NAME: str = "openai/clip-vit-base-patch32"
     TEXT_BATCH_SIZE: int = 32
     IMAGE_BATCH_SIZE: int = 16
     DEVICE: str = 'auto'
-    
-    class Config:
-        env_file = '.env'
-        extra = 'ignore'
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
 settings = Settings()

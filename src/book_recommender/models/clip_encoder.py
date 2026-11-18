@@ -43,10 +43,34 @@ class CLIPEncoder:
         print(f"Embedding dimension: {self.embedding_dim}")
 
     @staticmethod
+    def _extract_features(outputs) -> torch.Tensor:
+        """
+        Unwrap CLIP outputs to a Tensor.
+
+        transformers >= 4.44 / 5.x returns BaseModelOutputWithPooling
+        (with projected features in pooler_output) instead of a Tensor,
+        so F.normalize() fails with:
+            AttributeError: 'BaseModelOutputWithPooling' object has no attribute 'norm'
+        """
+        if isinstance(outputs, torch.Tensor):
+            return outputs
+        pooler = getattr(outputs, "pooler_output", None)
+        if pooler is not None:
+            return pooler
+        last_hidden = getattr(outputs, "last_hidden_state", None)
+        if last_hidden is not None:
+            # [batch, seq, dim] -> CLS token [batch, dim]
+            return last_hidden[:, 0, :]
+        if isinstance(outputs, (tuple, list)) and len(outputs) > 0:
+            return outputs[0]
+        raise TypeError(f"Unexpected CLIP output type: {type(outputs)!r}")
+
+    @staticmethod
     def _normalize(embeddings: torch.Tensor) -> torch.Tensor:
         """
         Apply L2 Normalization to the Embeddings
         """
+        embeddings = CLIPEncoder._extract_features(embeddings)
         return F.normalize(embeddings, p=2, dim=-1)
 
     @staticmethod
