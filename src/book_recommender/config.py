@@ -21,12 +21,17 @@ class Settings(BaseSettings):
     BOOKS_FILE: Path = RAW_DATA_DIR / "Books.csv"
     USERS_FILE: Path = RAW_DATA_DIR / "Users.csv"
     RATINGS_FILE: Path = RAW_DATA_DIR / "Ratings.csv"
-    CSV_SEPARATOR: str = ";"
+    BOOKS_PROCESSED_FILE: Path = PROCESSED_DATA_DIR / "Books_processed.csv"
+    USERS_PROCESSED_FILE: Path = PROCESSED_DATA_DIR / "Users_processed.csv"
+    RATINGS_PROCESSED_FILE: Path = PROCESSED_DATA_DIR / "Ratings_processed.csv"
+    CSV_SEPARATOR: str = ","
     CSV_ENCODING: str = "latin-1"
     
     # Filtering and Pre-processing
     MIN_YEAR: int = 1800
     MAX_YEAR: int = 2026
+    MIN_AGE: int = 5
+    MAX_AGE: int = 100
     
     # Image Storage
     COVERS_DIR: Path = PROJECT_ROOT / "artifacts" / "covers"
