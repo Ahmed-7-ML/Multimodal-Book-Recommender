@@ -1,4 +1,6 @@
-
+"""
+Generate Embeddings for Text & Images using CLIP Encoder
+"""
 from pathlib import Path
 from typing import Mapping
 import logging

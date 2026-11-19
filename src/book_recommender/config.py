@@ -5,6 +5,12 @@ from pathlib import Path
 # We use pydantic-settings to allow environment variables to override defaults
 from pydantic_settings import SettingsConfigDict, BaseSettings
 
+from dotenv import load_dotenv
+import os
+
+# Load Environment Variables
+load_dotenv()
+
 # Project Root
 # config.py -> multimodal_book_recommender -> src -> project root
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -44,6 +50,16 @@ class Settings(BaseSettings):
     TEXT_BATCH_SIZE: int = 32
     IMAGE_BATCH_SIZE: int = 16
     DEVICE: str = 'auto'
+    
+    # Qdrant Vector Store
+    QDRANT_URL: str = "https://846de8f8-6a87-4124-9c62-c7da86bbba0c.ap-northeast-2-0.aws.cloud.qdrant.io:6333"    
+    QDRANT_API_KEY: str
+    QDRANT_COLLECTION_NAME: str = "books"
+    QDRANT_VECTOR_SIZE: int = 512
+    QDRANT_UPSERT_BATCH_SIZE: int = 128
+
+    # Number of books processed in each indexing iteration.
+    INDEX_BATCH_SIZE: int = 256
 
     model_config = SettingsConfigDict(
         env_file=".env",
