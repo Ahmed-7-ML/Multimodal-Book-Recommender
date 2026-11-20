@@ -4,3 +4,5 @@ Resource Management (Lifespan) = Lifecycle
 - While Running: Use the same instance not reloading them
 - Shutdown: Close the Retriever
 """
+
+import logging
