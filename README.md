@@ -21,6 +21,8 @@ multimodal-book-recommender/
 │       ├── data/
 │       │   ├── loader.py
 │       │   └── preprocessing.py
+
+│       │   └──download_covers.py
 │       │
 │       ├── models/
 │       │   └── clip_encoder.py
@@ -31,6 +33,8 @@ multimodal-book-recommender/
 │       │
 │       ├── vector_store/
 │       │   └── qdrant_store.py
+
+│       │   └── indexing.py
 │       │
 │       ├── retrieval/
 │       │   └── retriever.py
@@ -43,19 +47,10 @@ multimodal-book-recommender/
 │           ├── schemas.py
 │           └── routes.py
 │
-├── scripts/
-│   ├── download_covers.py
-│   └── index_books.py
-│
 ├── frontend/
 │   └── app.py
 │
 ├── tests/
-│   ├── test_preprocessing.py
-│   └── test_embeddings.py
-
-│   └── test_clip_model.py
-│
 ├── .env.example
 ├── .gitignore
 ├── pyproject.toml
