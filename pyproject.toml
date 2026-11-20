@@ -43,3 +43,6 @@ markers = [
 [tool.ruff]
 line-length = 88
 target-version = "py311"
+
+[tool.vercel]
+entrypoint = "src.book_recommender.api.main:app"
