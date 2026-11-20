@@ -101,7 +101,7 @@ def health_check():
     """Check whether the API process is running."""
     return HealthResponse(status="ok")
 
-@router.post("/recommend/text", response_model=TextRequest, tags=['Recommendations', 'Text'])
+@router.post("/recommend/text", response_model=RecommendationResponse, tags=['Recommendations', 'Text'])
 def recommend_by_text(data: TextRequest, request: Request):
     """Recommend books using a text description."""
     retriever, ranker = get_services(request)
