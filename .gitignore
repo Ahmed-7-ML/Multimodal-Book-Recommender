@@ -222,5 +222,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Datasets
+data/raw/
+data/processed/
+
+# Generated artifacts
 artifacts/
-data/processed
